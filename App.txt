@@ -1,0 +1,52 @@
+package spider;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
+import org.simpleframework.xml.core.Persister;
+
+public class App {
+
+	public static void main(String[] args) {
+		FilmList filmList=new FilmList();
+
+		filmList.list = Collections.synchronizedList(new ArrayList<>());
+
+		ExecutorService pool = Executors.newCachedThreadPool();
+
+		for (int i = 0; i < 10; i++) {
+			Spider spider = new Spider("https://movie.douban.com/top250?start=" + i * 25, filmList);
+			pool.execute(spider);
+		}
+		
+		pool.shutdown();
+		
+		while (true) {
+			if (pool.isTerminated()) {
+				//对爬到电影信息根据排行id排序
+				Collections.sort(filmList.list);
+				break;
+			}else {
+				try {
+					Thread.sleep(1_000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		pool = Executors.newFixedThreadPool(10);
+
+		
+		try {
+			new Persister().write(filmList, new File("f.xml"));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+}

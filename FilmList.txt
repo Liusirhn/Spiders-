@@ -1,0 +1,32 @@
+package spider;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.simpleframework.xml.ElementList;
+import org.simpleframework.xml.Root;
+
+@Root(name="Film-list")
+public class FilmList {
+	
+	@ElementList(inline=true)
+	List<Film> list;
+	
+	public FilmList() {
+		list=new ArrayList<>();
+	}
+	public void add(Film film) {
+		list.add(film);
+	}
+	public Film get(int index) {
+		return list.get(index);
+		
+	}
+	public int size() {
+		return list.size();
+	}
+	
+	
+	
+
+}

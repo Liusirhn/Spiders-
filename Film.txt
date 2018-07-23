@@ -1,0 +1,219 @@
+package spider;
+
+import org.simpleframework.xml.Attribute;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
+
+@Root
+public class Film implements Comparable<Film>{
+	
+	//字段
+
+	//电影排行
+	@Attribute
+	int id;
+	
+	//海报
+	@Element
+	String poster;
+	
+	//电影名
+	@Element
+	String title;
+	//导演
+	@Element
+	String director;
+	
+	//编剧
+	@Element
+	String scriptwriter;
+	
+	//主演
+	@Element
+	String actor;
+	
+	//类型
+	@Element
+	String type;
+	
+	//
+	@Element
+	String makePlace;
+	
+	//上映时间
+	@Element
+	String releaseTime;
+	
+	//片长
+	@Element
+	String movieTime;
+	
+	//豆瓣评分
+	@Element
+	double grade;
+	
+	//评论人数
+	@Element
+	int commentNum;
+	
+	//电影摘要
+	@Element
+	String queto;
+	
+	//语言
+	@Element
+	String language;
+	
+	public Film() {
+		this.title = "";
+		this.actor = "";
+		this.director = "";
+		this.language = "";
+		this.makePlace = "";
+		this.movieTime = "";
+		this.poster = "";
+		this.queto = "";
+		this.releaseTime = "";
+		this.scriptwriter = "";
+		this.type = "";
+	}
+	
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getPoster() {
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+
+	public String getScriptwriter() {
+		return scriptwriter;
+	}
+
+	public void setScriptwriter(String scriptwriter) {
+		this.scriptwriter = scriptwriter;
+	}
+	
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public String getDirector() {
+		return director;
+	}
+	
+	public void setDirector(String director) {
+		this.director = director;
+	}
+	
+	public String getActor() {
+		return actor;
+	}
+	
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
+	
+	public double getGrade() {
+		return grade;
+	}
+	
+	public void setGrade(double grade) {
+		this.grade = grade;
+	}
+
+	public int getCommentNum() {
+		return commentNum;
+	}
+	
+	public void setCommentNum(int commentNum) {
+		this.commentNum = commentNum;
+	}
+	
+	public String getQueto() {
+		return queto;
+	}
+	
+	public void setQueto(String queto) {
+		this.queto = queto;
+	}
+	
+
+	public String getType() {
+		return type;
+	}
+	
+	public void setType(String type) {
+		this.type = type;
+	}
+	
+	public String getMakePlace() {
+		return makePlace;
+	}
+	
+	public void setMakePlace(String makePlace) {
+		this.makePlace = makePlace;
+	}
+
+	public String getReleaseTime() {
+		return releaseTime;
+	}
+	
+	public void setReleaseTime(String releaseTime) {
+		this.releaseTime = releaseTime;
+	}
+
+	public String getMovieTime() {
+		return movieTime;
+	}
+	
+	public void setMovieTime(String movieTime) {
+		this.movieTime = movieTime;
+	}
+	
+	
+	public String getLanguage() {
+		return language;
+	}
+	
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+	
+	public String toString() {
+		return "{\nid: " + id 
+				+ "\ntitle: " + title 
+				+ "\nposter: " + poster 
+				+ "\ndirector: " + director 
+				+ "\nscriptwriter: " + scriptwriter
+				+ "\nactior: " + actor 
+				+ "\ngrade: " + grade 
+				+ "\ncommentNum: " + commentNum 
+				+ "\nqueto: " + queto 
+				+ "\ntype: " + type
+				+ "\nlanguage :" + language
+				+ "\nmakePlace: " + makePlace
+				+ "\nreleaseTime: " + releaseTime 
+				+ "\nmovieTime: " + movieTime + "\n}";
+	}
+	/**
+	 * 按照排行Id来排序
+	 */
+	@Override
+	public int compareTo(Film o) {
+		return this.id - o.id;
+	}
+}
